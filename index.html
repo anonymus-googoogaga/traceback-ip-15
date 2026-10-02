@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TRACEBACK — Rural Hit-and-Run Investigation Network | Pune, Maharashtra</title>
+<meta name="description" content="TRACEBACK is a low-cost rural investigation service for hit-and-run victims, powered by a network of local garages that continuously create vehicle-observation points." />
+<meta name="theme-color" content="#05070a" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/styles.css" />
+<script>document.documentElement.className += " js";</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23f5a524'/%3E%3Cpath d='M9 22V10h11M9 16h8' stroke='%2305070a' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+</head>
+<body>
+<div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+<a class="skip" href="#problem">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="nav-wrap">
+    <a class="brand" href="#home" aria-label="TRACEBACK home">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="26" height="26"><rect width="32" height="32" rx="8" fill="currentColor"/><path d="M9 22.5V9.5h12M9 16.2h8.5" stroke="#05070a" stroke-width="3.1" fill="none" stroke-linecap="round"/></svg>
+      </span>
+      <span class="brand-text">TRACE<em>BACK</em></span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navList" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav-list" id="navList" aria-label="Primary">
+      <a href="#problem">Problem</a>
+      <a href="#solution">Solution</a>
+      <a href="#garage">Garage Network</a>
+      <a href="#matching">Matching</a>
+      <a href="#technology">Technology</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#mvp">Pilot</a>
+      <a href="#numbers">The Numbers</a>
+      <a href="#risks">Risks</a>
+      <a class="nav-cta" href="#report">File a case</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="wrap hero-inner">
+    <div class="hero-copy reveal">
+      <div class="eyebrow">
+        <span class="pulse" aria-hidden="true"></span>
+        Pilot concept · Rural Pune, Maharashtra
+      </div>
+
+      <h1 class="hero-title">
+        We are not putting cameras<br />
+        on every rural road.<br />
+        <span class="grad">We are putting observation points<br />where damaged vehicles already arrive.</span>
+      </h1>
+
+      <p class="hero-sub">
+        A hit-and-run vehicle does not vanish. It takes a village road, goes home, and
+        reappears two days later at a small garage with no connection to the investigation.
+        <strong>TRACEBACK</strong> turns that garage into a structured evidence point —
+        and sells the victim a low-cost investigation instead of a piece of AI.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#report">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          File a hit-and-run case
+        </a>
+        <a class="btn btn-ghost" href="#matching">Try the match engine</a>
+      </div>
+
+      <dl class="hero-stats">
+        <div><dt>Observation points</dt><dd id="statGarages">30</dd><span>target garages, one corridor</span></div>
+        <div><dt>Capture time</dt><dd id="statCapture">45s</dd><span>per vehicle, per visit</span></div>
+        <div><dt>Match method</dt><dd id="statMethod">Rules</dd><span>no GNN in the MVP</span></div>
+      </dl>
+    </div>
+
+    <div class="hero-visual reveal" data-delay="1">
+      <div class="phone">
+        <div class="phone-notch" aria-hidden="true"></div>
+        <div class="phone-screen">
+          <div class="wa-head">
+            <div class="wa-avatar" aria-hidden="true">TB</div>
+            <div class="wa-meta">
+              <strong>TRACEBACK</strong>
+              <span>usually replies in minutes</span>
+            </div>
+          </div>
+          <div class="wa-body" id="waBody">
+            <div class="bubble bubble-in">Namaskar 🙏 Hit-and-run case file karta aahe. Pan ek prashn — FIR/register kayale?</div>
+            <div class="bubble bubble-out">FIR nahi, khup bhaau panik ani police kahi nahi karat.</div>
+            <div class="bubble bubble-in">Bharat chalel. Apna <b>ghat/gaon</b> name sanga, jevi photo pathav, ani time.</div>
+            <div class="bubble bubble-out">18 July, ratri 7:30. Gaon- Khed. Ek <b>white SUV</b> hot, samor-ne aali. Photo pathavto.</div>
+            <div class="bubble bubble-in">Received. Case <b>TB-1147</b> open zala. Investigation zone 14 km draw karto. <b>17 garages</b> in zone madhe — search suru. 👇</div>
+          </div>
+          <div class="wa-input" aria-hidden="true">
+            <span>Type a message</span>
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm4.2-10.4-4.6 4.2-4.6-4.2 1.4-1.4L11.6 11l3.2-2.8 1.4 1.4z"/></svg>
+          </div>
+        </div>
+      </div>
+      <p class="phone-caption">The victim buys an investigation, not an algorithm.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Victim-first</span><span>·</span><span>Garage-native data</span><span>·</span><span>Human-verified leads</span><span>·</span><span>No surveillance cameras</span><span>·</span><span>Supplementary to police, never a replacement</span><span>·</span>
+        <span>Victim-first</span><span>·</span><span>Garage-native data</span><span>·</span><span>Human-verified leads</span><span>·</span><span>No surveillance cameras</span><span>·</span><span>Supplementary to police, never a replacement</span><span>·</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 1. PROBLEM ============ -->
+<section class="sec" id="problem">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">01 — The problem</span>
+      <h2>The real question is not <em>"where did it go?"</em></h2>
+      <p class lede">
+        It is: <strong>how can a rural victim create enough evidence to identify a vehicle
+        after it has already escaped?</strong>
+      </p>
+    </div>
+
+    <div class="chain reveal">
+      <div class="chain-step"><b>Accident</b><span>in a village road, often after dark</span></div>
+      <div class="chain-arrow" aria-hidden="true">&rarr;</div>
+      <div class="chain-step"><b>Vehicle escapes</b><span>takes a connecting road, no camera</span></div>
+      <div class="chain-arrow" aria-hidden="true">&rarr;</div>
+      <div class="chain-step"><b>Victim reports</b><span>FIR, maybe an application</span></div>
+      <div class="chain-arrow" aria-hidden="true">&rarr;</div>
+      <div class="chain-step is-lost"><b>Vehicle unidentified</b><span>now a dented car at a garage</span></div>
+    </div>
+
+    <div class="grid-2 mt-xl">
+      <article class="card reveal">
+        <h3>What the victim actually knows</h3>
+        <ul class="tick">
+          <li>Approximate vehicle colour</li>
+          <li>Vehicle type — car, two-wheeler, tractor, tempo</li>
+          <li>Direction of travel</li>
+          <li>Rough time, and the location</li>
+          <li>Maybe a partial registration number</li>
+          <li>Sometimes a photograph, sometimes a witness</li>
+        </ul>
+        <p class="card-note">That is the entire evidence budget. It is small, but it is not zero — if you can find a place where this vehicle must show up.</p>
+      </article>
+
+      <article class="card reveal" data-delay="1">
+        <h3>What happens to the vehicle next</h3>
+        <ul class="cross">
+          <li>Turns onto a village road</li>
+          <li>Returns home, is parked out of sight</li>
+          <li>Visits a local mechanic for a quote</li>
+          <li>Moves to a body shop for panel work</li>
+          <li>Is repaired quietly, over days</li>
+          <li>Crosses a taluka or district boundary</li>
+        </ul>
+        <p class="card-note">The critical evidence does not get destroyed. It simply stops being <em>recorded</em>. That gap is the entire business opportunity.</p>
+      </article>
+    </div>
+
+    <div class="insight reveal">
+      <div class="insight-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1L7 17M17 7l2.1-2.1"/><circle cx="12" cy="12" r="4"/></svg>
+      </div>
+      <div>
+        <h4>The business insight</h4>
+        <p>
+          Monitoring every rural road means cameras on every rural road — capital that
+          a district cannot spend and a village will not maintain. But there is one
+          category of place where a <em>damaged</em> vehicle is almost guaranteed to appear:
+          <strong>the garage.</strong> So TRACEBACK does not monitor roads.
+          It monitors the repair ecosystem.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. CUSTOMER ============ -->
+<section class="sec sec-alt" id="customer">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">02 — Who we serve</span>
+      <h2>The victim is the customer. Deliberately.</h2>
+      <p class="lede">Not a police department, not an insurer, not a district. The person harmed pays for the search, and that keeps the incentive honest.</p>
+    </div>
+
+    <div class="grid-3">
+      <article class="role reveal">
+        <span class="role-tag">Customer</span>
+        <h3>Hit-and-run victim</h3>
+        <p>The person struck, or their immediate family. Frequently a daily-wage or
+        small-trader household — which is precisely why the price point has to be low
+        and the outcome has to be concrete.</p>
+      </article>
+      <article class="role reveal" data-delay="1">
+        <span class="role-tag">User</span>
+        <h3>Victim or assisting relative</h3>
+        <p>Often the son, daughter or neighbour who has the smartphone. The person
+        physically standing at the accident spot taking photographs is usually not
+        the person who fills the form.</p>
+      </article>
+      <article class="role reveal" data-delay="2">
+        <span class="role-tag alt">Payer</span>
+        <h3>Victim / family — initially</h3>
+        <p>No procurement, no tender, no dependency on a government pilot. Insurance
+        and fleet revenue comes later and subsidises the network; it is never a
+        prerequisite for serving the victim.</p>
+      </article>
+    </div>
+
+    <div class="beachhead reveal">
+      <div class="beachhead-map">
+        <div class="beachhead-inner">
+          <span class="pin pin-a" aria-hidden="true"></span>
+          <span class="pin pin-b" aria-hidden="true"></span>
+          <span class="pin pin-c" aria-hidden="true"></span>
+          <span class="pin pin-d" aria-hidden="true"></span>
+          <div class="beachhead-label">
+            <strong>One corridor.</strong>
+            <span>Not the whole Pune district.</span>
+          </div>
+        </div>
+      </div>
+      <div class="beachhead-copy">
+        <h3>Beachhead: a defined rural/semi-rural Pune cluster</h3>
+        <p>
+          Launch across a district and you have no network, no density and no economics.
+          Launch across a <strong>single corridor</strong> — a handful of villages, the
+          roads that connect them, and the garages that sit on those roads — and density
+          becomes achievable.
+        </p>
+        <p class="muted">
+          The specific corridor must be <em>selected from data</em>, not chosen because
+          it happens to be scenic rural Pune:
+        </p>
+        <ul class="mini">
+          <li>Accident frequency and severity mix</li>
+          <li>Road connectivity and vehicle flow</li>
+          <li>Garage and body-shop density</li>
+          <li>Population of the villages served</li>
+          <li>Police-station and jurisdictional boundaries</li>
+          <li>Existing CCTV / ANPR coverage (to avoid duplicating it)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. THREE LAYERS ============ -->
+<section class="sec" id="solution">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">03 — The model</span>
+      <h2>Three layers. The network is the asset, not the model.</h2>
+      <p class="lede">The old shape was <em>Victim &rarr; AI &rarr; Mechanic</em>, which made the AI look essential. The new shape puts the physical network first.</p>
+    </div>
+
+    <div class="layers reveal">
+      <div class="layer">
+        <div class="layer-num">01</div>
+        <div class="layer-body">
+          <h3>Victim Service</h3>
+          <p>A person reports an incident from a phone. A case exists, with a location,
+          a time and a handful of vehicle characteristics. This is the demand side of the network.</p>
+          <span class="layer-out">Output: a case, and a search area</span>
+        </div>
+      </div>
+      <div class="layer-flow" aria-hidden="true">&darr;</div>
+      <div class="layer">
+        <div class="layer-num">02</div>
+        <div class="layer-body">
+          <h3>Garage Observation Network</h3>
+          <p>Participating garages continuously record vehicles arriving for accident
+          and repair work — not because we asked nicely, but because the tool is
+          something they wanted anyway.</p>
+          <span class="layer-out">Output: structured, timestamped vehicle observations</span>
+        </div>
+      </div>
+      <div class="layer-flow" aria-hidden="true">&darr;</div>
+      <div class="layer is-hot">
+        <div class="layer-num">03</div>
+        <div class="layer-body">
+          <h3>Investigation Intelligence</h3>
+          <p>TRACEBACK compares the victim's description against the garage
+          observations, ranks candidates, and hands a short, honest list to a human
+          investigator. The lead is a lead — not an accusation.</p>
+          <span class="layer-out">Output: a confidence-rated investigative lead</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="formula reveal">
+      <div class="formula-old">
+        <span class="formula-label">Vulnerable</span>
+        <code>Victim &rarr; AI &rarr; Mechanic</code>
+      </div>
+      <div class="formula-arrow" aria-hidden="true">&rarr;</div>
+      <div class="formula-new">
+        <span class="formula-label">Defensible</span>
+        <code>Victim &rarr; Investigation &rarr; Garage Network &rarr; Matching &rarr; Lead</code>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. PRODUCT / ZONE BUILDER ============ -->
+<section class="sec sec-alt" id="zone">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">04 — The product</span>
+      <h2>Step 1: build an investigation zone, not a prediction</h2>
+      <p class="lede">Before any sophisticated model runs, the MVP does something far more useful: it turns an incident into a defined search area with real garages inside it.</p>
+    </div>
+
+    <div class="zone-layout">
+      <div class="zone-panel reveal">
+        <div class="panel-head">
+          <h3>Live zone builder</h3>
+          <p>Pick a direction of travel. The zone, the corridor and the garage count update live.</p>
+        </div>
+
+        <div class="control">
+          <label for="zoneDir">Direction the vehicle escaped</label>
+          <div class="seg" id="zoneDir" role="radiogroup" aria-label="Direction of travel">
+            <button role="radio" aria-checked="true" class="is-on" data-dir="E">East</button>
+            <button role="radio" aria-checked="false" data-dir="N">North</button>
+            <button role="radio" aria-checked="false" data-dir="W">West</button>
+            <button role="radio" aria-checked="false" data-dir="S">South</button>
+          </div>
+        </div>
+
+        <div class="control">
+          <label for="zoneRadius">Search radius <output id="zoneRadiusOut">10 km</output></label>
+          <input type="range" id="zoneRadius" min="2" max="22" step="1" value="10" />
+        </div>
+
+        <div class="zone-readout">
+          <div><span>Garages in zone</span><strong id="zrGarages">—</strong></div>
+          <div><span>On probable route</span><strong id="zrOnRoute">—</strong></div>
+          <div><span>Villages covered</span><strong id="zrVillages">—</strong></div>
+          <div><span>Est. road distance swept</span><strong id="zrRoad">—</strong></div>
+        </div>
+
+        <p class="panel-note">
+          A pilot run would return exactly this: <em>"17 relevant garages within the
+          initial investigation zone."</em> That sentence alone is worth something to a
+          victim — and it requires no model at all.
+        </p>
+      </div>
+
+      <div class="zone-map reveal" data-delay="1">
+        <div class="map-frame">
+          <div class="map-toolbar">
+            <span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span>
+            <em>Corridor schematic — Saswad · Walhewadi · Karanji · Nimgaon</em>
+          </div>
+          <div id="zoneMap" class="map-holder"></div>
+          <div class="map-legend">
+            <span><i class="sw sw-scene"></i>Incident</span>
+            <span><i class="sw sw-corridor"></i>Probable escape route</span>
+            <span><i class="sw sw-village"></i>Village</span>
+            <span><i class="sw sw-garage"></i>Participating garage</span>
+            <span><i class="sw sw-out"></i>Outside zone</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="intake reveal">
+      <div class="intake-head">
+        <h3>What the victim actually sends</h3>
+        <p>No native app. A WhatsApp message and a form — because the person filing this has had a bad night and will not install anything.</p>
+      </div>
+      <div class="intake-grid">
+        <div class="intake-item"><span>Location</span><p>Pin dropped, or village name + landmark</p></div>
+        <div class="intake-item"><span>Date &amp; time</span><p>To the nearest half-hour</p></div>
+        <div class="intake-item"><span>Direction</span><p>Which way the vehicle went</p></div>
+        <div class="intake-item"><span>Vehicle type</span><p>Car, SUV, tempo, tractor, bike</p></div>
+        <div class="intake-item"><span>Colour</span><p>One word is enough</p></div>
+        <div class="intake-item"><span>Visible damage</span><p>Which panel, what shape</p></div>
+        <div class="intake-item"><span>Partial registration</span><p>Any digits they remember</p></div>
+        <div class="intake-item"><span>Photographs</span><p>Vehicle, damage, scene, road</p></div>
+        <div class="intake-item"><span>Witnesses</span><p>Name and number, if anyone stopped</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. GARAGE NETWORK ============ -->
+<section class="sec" id="garage">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">05 — The garage network</span>
+      <h2>We are not asking garages for a favour.</h2>
+      <p class="lede">Asking a busy mechanic to do extra unpaid work for hypothetical future victims will not survive contact with reality. So the tool must pay for itself on a normal day.</p>
+    </div>
+
+    <div class="split-callout reveal">
+      <div class="sco-bad">
+        <span class="sco-label">The wrong ask</span>
+        <p><em>"Please help victims find hit-and-run cars."</em></p>
+        <small>No benefit. No deadline. Easy to ignore forever.</small>
+      </div>
+      <div class="sco-vs" aria-hidden="true">vs</div>
+      <div class="sco-good">
+        <span class="sco-label">The right ask</span>
+        <p><em>"Here is the repair-record software you were going to want anyway."</em></p>
+        <small>Immediate, independent, everyday value — the investigation network is a side effect.</small>
+      </div>
+    </div>
+
+    <div class="grid-3 mt-lg">
+      <article class="card card-hl reveal">
+        <div class="card-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 7h18v12H3zM3 11h18M8 7V4h8v3"/><path d="M7 15h4"/></svg>
+        </div>
+        <h3>Before / after job record</h3>
+        <p>Photograph on arrival, photograph on handover, job card attached. A digital
+        repair history the customer can actually be shown.</p>
+      </article>
+      <article class="card card-hl reveal" data-delay="1">
+        <div class="card-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5h16v14H4z"/><path d="M4 9h16M8 13h8M8 16h5"/></svg>
+        </div>
+        <h3>Digital job cards &amp; invoices</h3>
+        <p>Replaces the register that half the garages in the corridor still keep in
+        a cloth ledger, and which is illegible six months later.</p>
+      </article>
+      <article class="card card-hl reveal" data-delay="2">
+        <div class="card-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg>
+        </div>
+        <h3>Customer history &amp; repeat work</h3>
+        <p>Which customer came back, for what, and what was charged. Useful for
+        retention, and useful for the customer.</p>
+      </article>
+      <article class="card card-hl reveal">
+        <div class="card-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1"/></svg>
+        </div>
+        <h3>Assisted damage assessment</h3>
+        <p>Later phase: a rough estimate of repair cost from the photographs, so the
+        owner knows the ballpark before agreeing to a quote.</p>
+      </article>
+      <article class="card card-hl reveal" data-delay="1">
+        <div class="card-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l8 4v6c0 5-3.5 7.5-8 8.5C7.5 20.5 4 18 4 13V7z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>Standing in good order</h3>
+        <p>Being part of a professional network with a named contact number. In a
+        village, that is not nothing.</p>
+      </article>
+      <article class="card card-hl reveal" data-delay="2">
+        <div class="card-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 19h2"/></svg>
+        </div>
+        <h3>A phone that already works</h3>
+        <p>Android app or PWA. No dedicated hardware, no barcode printers, no
+        per-visit fee in the pilot.</p>
+      </article>
+    </div>
+
+    <div class="capture reveal">
+      <div class="capture-flow">
+        <div class="cf-step"><b>Vehicle arrives</b></div>
+        <div class="cf-step"><b>Photograph</b><span>front, rear, both sides, damage, plate</span></div>
+        <div class="cf-step"><b>Tap the damage panel</b><span>one tap on a car diagram</span></div>
+        <div class="cf-step"><b>Done</b><span class="cf-time" id="cfTime">~45 seconds</span></div>
+      </div>
+      <div class="capture-out">
+        <h4>Automatically captured by the app</h4>
+        <ul class="pill-list">
+          <li>Vehicle photographs</li><li>Damage location</li><li>Vehicle class</li><li>Colour</li>
+          <li>Visible registration</li><li>Date &amp; time of arrival</li><li>Garage location</li><li>Fresh-repair flag</li>
+        </ul>
+        <p class="muted">If capture takes longer than a minute, garages will stop doing it. Speed is not a feature here — it is the retention strategy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. MATCH ENGINE (INTERACTIVE) ============ -->
+<section class="sec sec-alt" id="matching">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">06 — How a lead is found</span>
+      <h2>No GNN. A scoring function you can argue with.</h2>
+      <p class="lede">A weighted, explainable score. Every point is attributable to a factor, which means a human reviewer can disagree with it — and that is the point.</p>
+    </div>
+
+    <div class="example-strip reveal">
+      <div class="ex-card">
+        <span class="ex-tag victim">Victim reports</span>
+        <ul>
+          <li>White SUV</li>
+          <li>Front-right impact</li>
+          <li>Accident at 19:30</li>
+          <li>Travelling east</li>
+        </ul>
+      </div>
+      <div class="ex-link" aria-hidden="true">+3 days &rarr;</div>
+      <div class="ex-card">
+        <span class="ex-tag garage">Garage #8 uploads</span>
+        <ul>
+          <li>White SUV</li>
+          <li>Front-right damage</li>
+          <li>Fresh repair, panel repainted</li>
+          <li>Arrived 09:15</li>
+        </ul>
+      </div>
+      <div class="ex-link" aria-hidden="true">&rarr;</div>
+      <div class="ex-card ex-out">
+        <span class="ex-tag out">TRACEBACK returns</span>
+        <p class="ex-score">Confidence: <b>High</b></p>
+        <p class="ex-small">A lead to verify. Never "this is the offender."</p>
+      </div>
+    </div>
+
+    <div class="engine">
+      <div class="engine-controls reveal">
+        <h3>Run the engine</h3>
+        <p class="muted">Set the victim's description. The engine scores every garage observation in the network.</p>
+
+        <div class="control">
+          <label for="mType">Vehicle category</label>
+          <select id="mType">
+            <option>Hatchback</option>
+            <option selected>SUV</option>
+            <option>Sedan</option>
+            <option>Tempo / Mini-truck</option>
+            <option>Tractor</option>
+            <option>Two-wheeler</option>
+          </select>
+        </div>
+
+        <div class="control">
+          <label for="mColor">Colour</label>
+          <select id="mColor">
+            <option selected>White</option><option>Silver</option><option>Red</option>
+            <option>Blue</option><option>Black</option><option>Yellow</option><option>Green</option>
+          </select>
+        </div>
+
+        <div class="control">
+          <label for="mDamage">Damage location</label>
+          <select id="mDamage">
+            <option>Front-left</option><option selected>Front-right</option>
+            <option>Rear-left</option><option>Rear-right</option>
+            <option>Left side</option><option>Right side</option>
+            <option>Rear</option><option>Unclear</option>
+          </select>
+        </div>
+
+        <div class="control">
+          <label for="mDir">Probable direction</label>
+          <select id="mDir">
+            <option value="E" selected>East — Saswad road</option>
+            <option value="N">North — Walhewadi road</option>
+            <option value="W">West — Karanji road</option>
+            <option value="S">South — Nimgaon road</option>
+          </select>
+        </div>
+
+        <div class="control">
+          <label for="mHour">Incident hour <output id="mHourOut">19:00</output></label>
+          <input type="range" id="mHour" min="0" max="23" step="1" value="19" />
+        </div>
+
+        <button class="btn btn-primary btn-block" id="runEngine">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+          Search the garage network
+        </button>
+        <button class="btn btn-quiet btn-block" id="resetEngine">Reset to example case</button>
+      </div>
+
+      <div class="engine-results reveal" data-delay="1">
+        <div class="res-head">
+          <div>
+            <h3>Ranked candidates</h3>
+            <p class="muted" id="resCount">Run the search to populate</p>
+          </div>
+          <div class="res-legend">
+            <span class="pill pill-hi">High</span>
+            <span class="pill pill-md">Medium</span>
+            <span class="pill pill-lo">Low</span>
+          </div>
+        </div>
+
+        <div id="resList" class="res-list">
+          <div class="res-empty">
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+            <p>Awaiting case description.</p>
+          </div>
+        </div>
+
+        <div class="res-disclaimer">
+          <strong>What this output is not.</strong> A match score is a ranking of
+          attention, not an identification. No candidate is presented as the offending
+          vehicle. A trained reviewer checks photographs, and the outcome is either
+          "worth pursuing" or "not worth pursuing" — nothing more aggressive than that.
+        </div>
+      </div>
+    </div>
+
+    <div class="weights reveal">
+      <h3>Scoring weights used by the MVP</h3>
+      <div class="weight-rows">
+        <div class="wrow"><span class="wl">Damage location &amp; characteristics</span><span class="wbar"><i style="width:30%"></i></span><span class="wv">30</span></div>
+        <div class="wrow"><span class="wl">Vehicle category</span><span class="wbar"><i style="width:25%"></i></span><span class="wv">25</span></div>
+        <div class="wrow"><span class="wl">Colour</span><span class="wbar"><i style="width:20%"></i></span><span class="wv">20</span></div>
+        <div class="wrow"><span class="wl">Garage position on probable route</span><span class="wbar"><i style="width:15%"></i></span><span class="wv">15</span></div>
+        <div class="wrow"><span class="wl">Arrival time plausibility</span><span class="wbar"><i style="width:10%"></i></span><span class="wv">10</span></div>
+        <div class="wrow is-muted"><span class="wl">Photographic similarity <em>(phase 2)</em></span><span class="wbar"><i style="width:0%"></i></span><span class="wv">—</span></div>
+        <div class="wrow is-muted"><span class="wl">Registration continuity <em>(if known)</em></span><span class="wbar"><i style="width:0%"></i></span><span class="wv">—</span></div>
+      </div>
+      <p class="muted">Route and timing are <em>graded</em>, not pass/fail — a garage two hours from the scene on the right road is stronger evidence than one twenty kilometres away on the right road. Colour and category are deliberately low-weight: a lot of rural vehicles are white, and "SUV" is not a rare finding in a corridor. Notice what happens when three identical white SUVs turn up — the engine separates them by <strong>timing and route, not appearance</strong>, and two of the three drop out of the High band. That is the honest behaviour of a rules engine, and it is exactly the point at which image similarity starts earning its cost.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. AI STAGES ============ -->
+<section class="sec" id="technology">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">07 — Where AI fits</span>
+      <h2>Important — but later. In this order.</h2>
+      <p class="lede">Every stage below earns its place by improving lead quality or lead cost. None of them can rescue a network that does not exist.</p>
+    </div>
+
+    <div class="stages reveal">
+      <div class="stage is-now">
+        <div class="stage-rail"><span class="stage-dot">1</span></div>
+        <div class="stage-card">
+          <span class="stage-status">In the MVP</span>
+          <h3>Rules</h3>
+          <p>GPS, road network, corridor filtering, weighted scoring. A human investigator makes the final call on every case.</p>
+          <ul><li>Road-network reachability</li><li>Corridor &amp; distance filters</li><li>Weighted attribute scoring</li></ul>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="stage-rail"><span class="stage-dot">2</span></div>
+        <div class="stage-card">
+          <span class="stage-status">Month 3–6</span>
+          <h3>Computer vision</h3>
+          <p>Automatically pull vehicle class, dominant colour and damaged components out of the garage photograph, so the mechanic types less.</p>
+          <ul><li>Vehicle classification</li><li>Colour extraction</li><li>Damage-component detection</li><li>Plate region reading</li></ul>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="stage-rail"><span class="stage-dot">3</span></div>
+        <div class="stage-card">
+          <span class="stage-status">Month 6–9</span>
+          <h3>Image similarity</h3>
+          <p>Compare the victim's scene photographs with the garage photographs. Embedding similarity, used only to reorder an already-short list.</p>
+          <ul><li>Scene-to-vehicle embedding match</li><li>Damage-texture similarity</li><li>Duplicate &amp; dedupe check</li></ul>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="stage-rail"><span class="stage-dot">4</span></div>
+        <div class="stage-card">
+          <span class="stage-status">Month 9–12</span>
+          <h3>Machine learning</h3>
+          <p>Learn from closed cases which attribute combinations actually produced a confirmed match — and re-weight the engine accordingly.</p>
+          <ul><li>Feature importance from resolved cases</li><li>Learned scoring calibration</li><li>Garage reliability weighting</li></ul>
+        </div>
+      </div>
+      <div class="stage is-future">
+        <div class="stage-rail"><span class="stage-dot">5</span></div>
+        <div class="stage-card">
+          <span class="stage-status">Only with data</span>
+          <h3>GNN</h3>
+          <p>A graph over <code>accident &rarr; road &rarr; junction &rarr; village &rarr; garage &rarr; vehicle observation</code> to learn routing priors that simple geometry misses. There is no case for building this before the network produces data.</p>
+          <ul><li>Graph of corridor topology &amp; observations</li><li>Learned escape-route priors</li><li>Garage-to-garage transfer patterns</li></ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout warn reveal">
+      <strong>Honest framing:</strong> a graph neural network is the most expensive and least
+      certain component in this plan, and it is also the one most likely to end up in a
+      pitch deck before it has earned its place. Building it early would mean spending
+      the budget on the one layer that cannot work without the other two.
+    </div>
+
+    <div class="tech-grid reveal">
+      <h3>Deliberately boring architecture</h3>
+      <div class="tg">
+        <div class="tg-col">
+          <span class="tg-label">Victim side</span>
+          <ul><li>WhatsApp</li><li>Mobile web form</li><li>No app install</li></ul>
+        </div>
+        <div class="tg-col">
+          <span class="tg-label">Garage side</span>
+          <ul><li>Android app / PWA</li><li>Offline-tolerant</li><li>Low-end device safe</li></ul>
+        </div>
+        <div class="tg-col">
+          <span class="tg-label">Backend</span>
+          <ul><li>Cloud database</li><li>GPS &amp; digital maps</li><li>Basic route algorithms</li><li>Image storage</li></ul>
+        </div>
+        <div class="tg-col">
+          <span class="tg-label">Engine</span>
+          <ul><li>Rule-based scoring</li><li>Geographic filtering</li><li>No GNN</li></ul>
+        </div>
+        <div class="tg-col">
+          <span class="tg-label">Operations</span>
+          <ul><li>Small human review team</li><li>Human-in-the-loop</li><li>Cheap &amp; safe</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. PRICING ============ -->
+<section class="sec sec-alt" id="pricing">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">08 — What the victim buys</span>
+      <h2>Sell the investigation. Never the AI.</h2>
+      <p class="lede">Nobody wakes up wanting machine learning. They want to know whose vehicle did this — and they want someone to have actually looked.</p>
+    </div>
+
+    <div class="tiers reveal">
+      <article class="tier">
+        <div class="tier-top">
+          <h3>Basic</h3>
+          <div class="price"><span>&#8377;</span>99</div>
+          <p class="tier-sub">Register the case, make it real, get the search area.</p>
+        </div>
+        <ul>
+          <li>Case registration &amp; evidence storage</li>
+          <li>Basic route and corridor analysis</li>
+          <li>Identified relevant garages in zone</li>
+          <li>Case timeline for the victim</li>
+        </ul>
+        <div class="tier-foot">For the victim who mainly needs someone to take it seriously.</div>
+      </article>
+
+      <article class="tier is-main">
+        <div class="tier-badge">Most requested</div>
+        <div class="tier-top">
+          <h3>Search</h3>
+          <div class="price"><span>&#8377;</span>299</div>
+          <p class="tier-sub">The actual network search, run against garage records.</p>
+        </div>
+        <ul>
+          <li>Everything in Basic</li>
+          <li>Garage-network search</li>
+          <li>Vehicle characteristic matching</li>
+          <li>Ranked candidate list with reasoning</li>
+          <li>Case monitoring until window closes</li>
+        </ul>
+        <div class="tier-foot">The package the business model is actually built on.</div>
+      </article>
+
+      <article class="tier">
+        <div class="tier-top">
+          <h3>Assisted</h3>
+          <div class="price"><span>&#8377;</span>499</div>
+          <p class="tier-sub">A person looks at the photographs and writes it up.</p>
+        </div>
+        <ul>
+          <li>Everything in Search</li>
+          <li>Human case review</li>
+          <li>Potential-match verification</li>
+          <li>Written investigation report</li>
+          <li>Formatted to share with police / insurer</li>
+        </ul>
+        <div class="tier-foot">For cases going into an FIR, a claim, or a court.</div>
+      </article>
+    </div>
+
+    <div class="callout reveal">
+      <strong>These are hypotheses, not prices.</strong> They are the first thing the
+      pilot should falsify. If nobody pays &#8377;299, that is information worth more
+      than any amount of model accuracy — and it is cheap to obtain.
+    </div>
+
+    <div class="before-after reveal">
+      <div class="ba ba-without">
+        <h3>Without TRACEBACK</h3>
+        <div class="ba-flow"><span>Accident</span><span>Police complaint</span><span>Wait</span></div>
+        <p>The vehicle is repaired within the week and the file is formally open with no outcome.</p>
+      </div>
+      <div class="ba ba-with">
+        <h3>With TRACEBACK</h3>
+        <div class="ba-flow"><span>Accident</span><span>Register case</span><span>Search participating garages</span><span>Potential lead</span></div>
+        <p>Additional investigative capability the victim otherwise does not have. Not certainty — capability.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. REVENUE ARCHITECTURE ============ -->
+<section class="sec" id="revenue">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">09 — If &#8377;499 is not enough</span>
+      <h2>The victim is the front door, not the whole shop.</h2>
+      <p class="lede">Hit-and-run investigation is episodic by nature. Low-frequency consumer cases cannot carry the cost of building network density on their own — so higher-value recurring revenue eventually subsides them.</p>
+    </div>
+
+    <div class="rev-layers reveal">
+      <div class="rev is-core">
+        <span class="rev-rank">Today</span>
+        <h3>Victim</h3>
+        <p>&#8377;99–&#8377;499 per investigation. Low margin per case, but it is the
+        demand signal that justifies everything else, and it is honest about who pays.</p>
+      </div>
+      <div class="rev">
+        <span class="rev-rank">Next</span>
+        <h3>Insurance</h3>
+        <p>Claims investigation, hit-and-run verification, pre-inspection photography,
+        fraud checks. Recurring, and the same infrastructure.</p>
+      </div>
+      <div class="rev">
+        <span class="rev-rank">Next</span>
+        <h3>Fleet operators</h3>
+        <p>Incident investigation and repair documentation for commercial vehicles.
+        Fleets generate continuous activity, not one-off cases.</p>
+      </div>
+      <div class="rev">
+        <span class="rev-rank">Later</span>
+        <h3>Garages (premium)</h3>
+        <p>Paid tiers of the garage software — inventory, pricing, customer
+        communication — once the free pilot has proven habitual use.</p>
+      </div>
+      <div class="rev">
+        <span class="rev-rank">Later</span>
+        <h3>Police / Government</h3>
+        <p>Geospatial + garage-network investigative infrastructure, deployed as a
+        supplementary evidence layer rather than a replacement for police work.</p>
+      </div>
+    </div>
+
+    <div class="callout warn reveal">
+      <strong>The mismatch to watch.</strong> Victim purchases are low-frequency and
+      one-off; network density is a fixed, upfront cost. If each case only arrives
+      every few weeks, the revenue per garage is the constraint — which is another
+      argument for the garage software being free and genuinely used, rather than a
+      thin paid tier nobody renews.
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. LEGAL / COMPENSATION ============ -->
+<section class="sec sec-alt" id="legal">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">10 — The honest context</span>
+      <h2>Compensation and identification are two different problems.</h2>
+      <p class="lede">There is already a government mechanism for hit-and-run compensation. Ignoring that would be both dishonest and commercially stupid.</p>
+    </div>
+
+    <div class="legal-grid reveal">
+      <div class="legal-card">
+        <span class="lc-tag">Existing</span>
+        <h3>Hit-and-run compensation</h3>
+        <p>MoRTH's 2022 scheme provides <strong>&#8377;2 lakh</strong> in the case of death
+        and <strong>&#8377;50,000</strong> for grievous injury, subject to the scheme's conditions.</p>
+        <p class="muted">A victim may not know they are entitled to this. That is a
+        separate failure, and it is not the one we solve.</p>
+        <a class="src" href="https://morth.nic.in/sites/default/files/Disaster-Management-Plan.pdf" target="_blank" rel="noopener noreferrer">
+          Ministry of Road Transport &amp; Highways &rarr;
+        </a>
+      </div>
+      <div class="legal-card is-us">
+        <span class="lc-tag">Ours</span>
+        <h3>Identification &amp; evidence</h3>
+        <p>Identifying the vehicle, establishing what it was carrying at the time,
+        and building a record that is usable in an FIR, a claim, or a civil case.</p>
+        <p class="muted">The compensation scheme pays you regardless of who hit you.
+        Identification determines <em>who is responsible</em>. Different question, different
+        customer, different buyer.</p>
+      </div>
+    </div>
+
+    <div class="callout reveal">
+      <strong>Positioning we will not take:</strong> <em>"Pay us because nobody else will
+      help you."</em> It is untrue, it is exploitative, and it invites exactly the
+      hostility that kills consumer trust in this category. The line is
+      <em>"compensation and identification are separate problems — we work on the second
+      one."</em>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11. WHY NOT JUST THE POLICE ============ -->
+<section class="sec" id="police">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">11 — The hardest question</span>
+      <h2>"Why wouldn't the police just call the garages?"</h2>
+      <p class="lede">This is the most serious objection to the model, and it deserves a structural answer rather than a reassuring one.</p>
+    </div>
+
+    <div class="grid-2">
+      <article class="card reveal">
+        <span class="card-tag">Police have</span>
+        <h3>Authority, and statutory reach</h3>
+        <ul class="tick">
+          <li>FIR information and statements</li>
+          <li>Witnesses, summons, and lawful production</li>
+          <li>Official authority to demand records</li>
+          <li>Jurisdiction across the district</li>
+        </ul>
+      </article>
+      <article class="card reveal" data-delay="1">
+        <span class="card-tag">TRACEBACK has</span>
+        <h3>Structured, searchable observations</h3>
+        <ul class="tick">
+          <li>Guaranteed records in the exact garages that matter</li>
+          <li>Searchable photographs with timestamps</li>
+          <li>Automatic vehicle-attribute matching</li>
+          <li>Geographic filtering across a whole corridor at once</li>
+          <li>No cost, no manpower, no follow-up burden</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="police-flow reveal">
+      <div class="pf-step">TRACEBACK<br /><small>potential lead</small></div>
+      <div class="pf-arrow" aria-hidden="true">&rarr;</div>
+      <div class="pf-step">Human verification<br /><small>a person checks the photos</small></div>
+      <div class="pf-arrow" aria-hidden="true">&rarr;</div>
+      <div class="pf-step">Victim / family<br /><small>with the report in hand</small></div>
+      <div class="pf-arrow" aria-hidden="true">&rarr;</div>
+      <div class="pf-step is-police">Police<br /><small>investigation proceeds on its own authority</small></div>
+    </div>
+
+    <p class="police-note reveal">
+      The workflow is <strong>lead &rarr; verification &rarr; police</strong>, never
+      <strong>accusation</strong>. A garage that gets an unexpected phone call from a
+      stranger accusing it of harbouring a hit-and-run vehicle is a business we have
+      destroyed. We hand a documented lead to the victim and to the authorities, and we
+      do not act on it ourselves.
+    </p>
+  </div>
+</section>
+
+<!-- ============ 12. MVP ============ -->
+<section class="sec sec-alt" id="mvp">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">12 — The MVP</span>
+      <h2>A 30-day concierge pilot. Software later.</h2>
+      <p class="lede">Do not build the platform. Build the answer. A WhatsApp number, thirty garages, one corridor, and a person with a spreadsheet.</p>
+    </div>
+
+    <div class="mvp-cards reveal">
+      <article class="mvp">
+        <span class="mvp-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.4-9 8.4 8.4 0 0 1 8.6 8.4z"/></svg></span>
+        <h3>Victim interface</h3>
+        <p>A WhatsApp number. The victim sends location, time, vehicle description and
+        photographs. Someone replies in plain Marathi or English. That is the entire
+        product surface.</p>
+      </article>
+      <article class="mvp">
+        <span class="mvp-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 21V9l9-6 9 6v12"/><path d="M7 21v-7h10v7"/></svg></span>
+        <h3>Garage network</h3>
+        <p>Twenty to thirty garages inside one rural Pune corridor, each with the same
+        simple vehicle photography and inspection workflow.</p>
+      </article>
+      <article class="mvp">
+        <span class="mvp-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="8"/></svg></span>
+        <h3>Investigation backend</h3>
+        <p>A person and a spreadsheet. No GNN, no vision pipeline, no model. Map the
+        routes, list the garages, call them, search the records, write up the leads.</p>
+      </article>
+    </div>
+
+    <div class="mvp-flow reveal">
+      <div class="mf-step"><span>1</span>Map the likely escape routes from the incident point</div>
+      <div class="mf-step"><span>2</span>List participating garages on those corridors</div>
+      <div class="mf-step"><span>3</span>Contact those garages directly</div>
+      <div class="mf-step"><span>4</span>Search their submitted vehicle records</div>
+      <div class="mf-step"><span>5</span>Identify potential matches, verify by phone</div>
+      <div class="mf-step"><span>6</span>Report potential leads to the victim / investigator</div>
+    </div>
+
+    <div class="callout reveal">
+      <strong>Six weeks of manual work is worth more than six months of platform
+      development</strong> — because the only question the manual version answers is the
+      only question that matters: does this produce a useful lead, at a cost somebody
+      will pay?
+    </div>
+  </div>
+</section>
+
+<!-- ============ 13. FIRST EXPERIMENT ============ -->
+<section class="sec" id="experiment">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">13 — The first experiment</span>
+      <h2>How to actually test this in 30 days</h2>
+    </div>
+
+    <ol class="exp reveal">
+      <li>
+        <span class="exp-n">01</span>
+        <div><h3>Select one rural corridor around Pune</h3><p>Using the data criteria: accident frequency, road connectivity, garage density, population, police-station boundaries, vehicle movement, existing surveillance.</p></div>
+      </li>
+      <li>
+        <span class="exp-n">02</span>
+        <div><h3>Recruit twenty to thirty garages</h3><p>Body shops and general garages. Sign up the ones that already do accident work — they are the ones this matters for, and they are also the ones with the habit of paperwork.</p></div>
+      </li>
+      <li>
+        <span class="exp-n">03</span>
+        <div><h3>Hand them a free inspection tool</h3><p>Lowest possible friction. If a garage needs a training call, the design is wrong.</p></div>
+      </li>
+      <li>
+        <span class="exp-n">04</span>
+        <div><h3>Collect for 30 days</h3><p>Vehicle type, colour, photographs, visible damage, timestamp, location. The raw material for every later model.</p></div>
+      </li>
+      <li>
+        <span class="exp-n">05</span>
+        <div><h3>Build controlled test cases</h3><p>Create Vehicle A — a white Bolero, front-right collision. Then find genuinely similar vehicles in the data — Vehicle B, same colour, same panel, same village. Can the system tell them apart, or does it just say "white SUV" every time?</p></div>
+      </li>
+      <li>
+        <span class="exp-n">06</span>
+        <div><h3>Run simulated hit-and-run investigations</h3><p>Real cases, plus reconstructed ones. Record what a human investigator did, what they found, and how long it took. That time figure is a direct input to the economics.</p></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ 14. THE FOUR NUMBERS ============ -->
+<section class="sec sec-alt" id="numbers">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">14 — What we measure</span>
+      <h2>Not downloads. Not benchmark accuracy. Four numbers.</h2>
+      <p class="lede">Model accuracy on a public image dataset says nothing about whether a rural victim gets a lead in four days. These four do.</p>
+    </div>
+
+    <div class="metrics reveal">
+      <div class="metric">
+        <div class="metric-num"><span class="count" data-to="70" data-suffix="%">0</span></div>
+        <h3>Garage compliance</h3>
+        <p>What percentage of relevant vehicle visits are actually recorded? Not how many
+        garages signed up — how many visits got captured.</p>
+        <span class="target">Pilot target</span>
+      </div>
+      <div class="metric">
+        <div class="metric-num"><span class="count" data-to="60" data-suffix="%">0</span></div>
+        <h3>Geographic coverage</h3>
+        <p>What share of the target area's vehicle-repair ecosystem is represented by
+        participating garages? A garage on the wrong side of a river is not coverage.</p>
+        <span class="target">Pilot target</span>
+      </div>
+      <div class="metric">
+        <div class="metric-num"><span class="count" data-to="50" data-suffix="%">0</span></div>
+        <h3>Matchability</h3>
+        <p>What share of real or simulated cases contain enough information to identify
+        a plausible vehicle at all? If this is low, no engine fixes it.</p>
+        <span class="target">Pilot target</span>
+      </div>
+      <div class="metric is-key">
+        <div class="metric-num"><span class="count" data-to="250" data-prefix="&#8377;">&#8377;0</span></div>
+        <h3>Cost per useful lead</h3>
+        <p>The one that decides everything. If a lead costs more than the victim pays,
+        better AI does not save the business. Read it both ways: variable cost, and
+        fully loaded with the network that produced it.</p>
+        <span class="target target-key">The killer metric</span>
+      </div>
+    </div>
+    <p class="fineprint reveal">Figures above are <strong>pilot targets to be measured</strong>, not observed results. Nothing in this document should be read as a claim about outcomes already achieved.</p>
+
+    <div class="calc reveal">
+          <div class="calc-head">
+            <h3>Does the economics hold?</h3>
+            <p>Move the sliders. This is the model that decides whether anything else is worth building — it separates the <em>variable</em> cost of running one search from the <em>fixed</em> cost of keeping the network alive.</p>
+          </div>
+
+          <div class="calc-body">
+            <div class="calc-inputs">
+              <div class="control">
+                <label for="cCases">Investigations per month <output id="cCasesOut">120</output></label>
+                <input type="range" id="cCases" min="10" max="600" step="10" value="120" />
+              </div>
+              <div class="control">
+                <label for="cCost">Cost per investigation (investigator time) <output id="cCostOut">&#8377;200</output></label>
+                <input type="range" id="cCost" min="40" max="900" step="10" value="200" />
+              </div>
+              <div class="control">
+                <label for="cLead">Useful-lead rate <output id="cLeadOut">45%</output></label>
+                <input type="range" id="cLead" min="2" max="70" step="1" value="45" />
+              </div>
+              <div class="control">
+                <label for="cPay">Share of cases that are paid <output id="cPayOut">55%</output></label>
+                <input type="range" id="cPay" min="5" max="100" step="5" value="55" />
+              </div>
+              <div class="control">
+                <label for="cPrice">Average package price</label>
+                <select id="cPrice">
+                  <option value="99">&#8377;99 — Basic</option>
+                  <option value="299">&#8377;299 — Search</option>
+                  <option value="499" selected>&#8377;499 — Assisted</option>
+                </select>
+              </div>
+              <div class="control">
+                <label for="cMrr">Fixed network cost per month (phones, tools, travel, coordinator)</label>
+                <input type="number" id="cMrr" value="22000" min="0" step="1000" />
+              </div>
+            </div>
+
+            <div class="calc-out">
+              <div class="co-big">
+                <span>Cost per useful lead — fully loaded</span>
+                <strong id="oCpl">&#8377;0</strong>
+              </div>
+              <div class="co-grid">
+                <div><span>Cost per lead — variable only</span><b id="oCplVar">&#8377;0</b></div>
+                <div><span>Useful leads / month</span><b id="oLeads">0</b></div>
+                <div><span>Monthly revenue</span><b id="oRev">&#8377;0</b></div>
+                <div><span>Monthly investigation cost</span><b id="oCost">&#8377;0</b></div>
+                <div><span>Contribution after cases</span><b id="oMargin">&#8377;0</b></div>
+                <div><span>Fixed network cost</span><b id="oMrr">&#8377;0</b></div>
+              </div>
+              <div class="co-verdict" id="oVerdict">
+                <strong>Calculating&hellip;</strong>
+                <p>Move the sliders to test the economics.</p>
+                <p class="co-fix" id="oFix"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="calc-presets">
+            <span>Scenarios:</span>
+            <button data-preset="base">Base case</button>
+            <button data-preset="scaled">Scaled + automated</button>
+            <button data-preset="thin">Thin month</button>
+            <button data-preset="bad">Broken: low lead rate</button>
+          </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 15. PHASES ============ -->
+<section class="sec" id="phases">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">15 — If the pilot works</span>
+      <h2>What this could become</h2>
+      <p class="lede">Each phase is conditional on the previous one working. Phase 3 does not exist unless Phase 1 produced leads.</p>
+    </div>
+
+    <div class="roadmap reveal">
+      <div class="rm">
+        <div class="rm-badge">Phase 1</div>
+        <h3>Hit-and-run investigation</h3>
+        <p>Victim &rarr; TRACEBACK &rarr; garage network. Revenue comes from the victim, case by case.</p>
+        <span class="rm-metric">Metric: cost per useful lead</span>
+      </div>
+      <div class="rm">
+        <div class="rm-badge">Phase 2</div>
+        <h3>Vehicle observation network</h3>
+        <p>Garages continuously generate vehicle + location + time + condition. TRACEBACK quietly becomes a distributed observation network — and a dataset nobody else has.</p>
+        <span class="rm-metric">Metric: coverage × compliance</span>
+      </div>
+      <div class="rm">
+        <div class="rm-badge">Phase 3</div>
+        <h3>Insurance</h3>
+        <p>Claims verification, accident documentation, fraud investigation, pre-inspection — served on infrastructure that is already running.</p>
+        <span class="rm-metric">Metric: recurring revenue share</span>
+      </div>
+      <div class="rm">
+        <div class="rm-badge">Phase 4</div>
+        <h3>Fleet</h3>
+        <p>Commercial fleets are more attractive than consumers because they produce
+        continuous incident volume rather than episodic one-off cases.</p>
+        <span class="rm-metric">Metric: accounts retained</span>
+      </div>
+      <div class="rm">
+        <div class="rm-badge">Phase 5</div>
+        <h3>Government / police</h3>
+        <p>Geospatial and garage-network investigative infrastructure — a way to search
+        a rural district without installing a single camera.</p>
+        <span class="rm-metric">Metric: deployments</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 16. MOAT ============ -->
+<section class="sec sec-alt" id="moat">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">16 — The moat</span>
+      <h2>Not "we have AI."</h2>
+      <p class="lede">Computer vision is a commodity. Any funded team can licence it. The
+      defensible thing, if this works, is density in a specific geography.</p>
+    </div>
+
+    <div class="moat reveal">
+      <div class="moat-ramp">
+        <div class="mr"><span class="mr-n">30</span><span class="mr-l">garages</span><small>Pilot corridor</small></div>
+        <div class="mr-arrow" aria-hidden="true">&rarr;</div>
+        <div class="mr"><span class="mr-n">100</span><span class="mr-l">garages</span><small>Sub-district coverage</small></div>
+        <div class="mr-arrow" aria-hidden="true">&rarr;</div>
+        <div class="mr"><span class="mr-n">500</span><span class="mr-l">garages</span><small>Multiple talukas</small></div>
+        <div class="mr-arrow" aria-hidden="true">&rarr;</div>
+        <div class="mr is-goal"><span class="mr-n">Multi</span><span class="mr-l">districts</span><small>Regional network</small></div>
+      </div>
+      <div class="moat-copy">
+        <h3>What each garage contributes</h3>
+        <p>Photographs, timestamps, vehicle characteristics, damage information and
+        precise location — collected continuously, not once, by people who had a
+        commercial reason to collect it anyway.</p>
+        <p>A <strong>geographically dense, consent-based vehicle condition and event
+        dataset</strong> for rural India, which does not exist and cannot be scraped
+        from anywhere.</p>
+        <div class="moat-warn">
+          <strong>State of the claim:</strong> this is a <em>hypothesis</em>. A
+          30-garage pilot does not constitute a moat, and it should not appear in an
+          investor deck as though it does.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 17. RISKS ============ -->
+<section class="sec" id="risks">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">17 — Risk register</span>
+      <h2>The honest list</h2>
+      <p class="lede">Five of these are rated very high. A plan that hides that is not a plan.</p>
+    </div>
+
+    <div class="table-wrap reveal">
+      <table class="risk">
+        <thead>
+          <tr><th>Risk</th><th>Severity</th><th>Mitigation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Garages don't participate</td><td><span class="sev sev-vh">Very high</span></td><td>Give the garage independent, everyday business value — the investigation network is the side effect, not the ask</td></tr>
+          <tr><td>Garages don't upload consistently</td><td><span class="sev sev-vh">Very high</span></td><td>Make capture 30–60 seconds, offline-tolerant, and impossible to defer to "later"</td></tr>
+          <tr><td>The relevant vehicle never enters the network</td><td><span class="sev sev-vh">Very high</span></td><td>Increase geographic density; cover body shops, not just general garages</td></tr>
+          <tr><td>Damage isn't distinctive</td><td><span class="sev sev-vh">Very high</span></td><td>Combine damage + route + timing + vehicle characteristics; never score on damage alone</td></tr>
+          <tr><td>Investigation cost exceeds price</td><td><span class="sev sev-vh">Very high</span></td><td>Human-assisted low-cost workflow first, automation only where measured</td></tr>
+          <tr><td>Victims don't actually pay</td><td><span class="sev sev-h">High</span></td><td>Run real payment experiments in the pilot; treat willingness-to-pay as unknown, not assumed</td></tr>
+          <tr><td>False positive harms an innocent garage</td><td><span class="sev sev-h">High</span></td><td>Human verification before anything is communicated; never publish a vehicle as "the offender"</td></tr>
+          <tr><td>Police don't act on leads</td><td><span class="sev sev-h">High</span></td><td>Position strictly as a supplementary evidence layer; hand over, don't instruct</td></tr>
+          <tr><td>Privacy, consent and data-protection exposure</td><td><span class="sev sev-h">High</span></td><td>Legal review before deployment; vehicle plates are personal data — retention limits and access control from day one</td></tr>
+          <tr><td>Plate / location data mishandled</td><td><span class="sev sev-h">High</span></td><td>Encrypt, restrict by role, log every access, delete on request, minimise what is stored</td></tr>
+          <tr><td>GNN adds little value</td><td><span class="sev sev-m">Medium</span></td><td>Do not build it until the data proves the need — and re-check this assumption every quarter</td></tr>
+          <tr><td>Free garage tool is used only for the trial</td><td><span class="sev sev-m">Medium</span></td><td>If usage drops after month 2, the business value argument is wrong and everything downstream fails</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 18. HYPOTHESIS ============ -->
+<section class="sec sec-alt" id="hypothesis">
+  <div class="wrap">
+    <div class="hyp reveal">
+      <span class="hyp-old">The old question</span>
+      <p class="hyp-q is-old">"Can AI predict where a hit-and-run vehicle went?"</p>
+      <div class="hyp-div" aria-hidden="true"></div>
+      <span class="hyp-new">The question worth testing</span>
+      <p class="hyp-q">"Can a sufficiently dense network of rural garages create enough post-accident vehicle observations to give victims useful investigative leads, at a cost they are willing to pay?"</p>
+    </div>
+    <p class="hyp-note reveal">The second question is harder, more falsifiable, and far more likely to lead to an actual business. The first one is a research question that could be answered "yes" by a model that still loses money on every case.</p>
+  </div>
+</section>
+
+<!-- ============ 19. REPORT A CASE ============ -->
+<section class="sec" id="report">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">18 — Take action</span>
+      <h2>File a case, or join the network.</h2>
+      <p class="lede">Two ways in. Both are free during the pilot.</p>
+    </div>
+
+    <div class="cta-grid">
+      <article class="cta cta-victim reveal">
+        <span class="cta-tag">For victims &amp; families</span>
+        <h3>Report a hit-and-run</h3>
+        <p>Send your location, the time, what the vehicle looked like, and any
+        photographs on WhatsApp. We will tell you honestly whether we can help — and
+        if we cannot, we will tell you about the compensation scheme as well.</p>
+        <ul>
+          <li>What to photograph: the damage, the scene, the road, any debris</li>
+          <li>What to note: colour, vehicle type, direction, approximate time</li>
+          <li>Also file an FIR — TRACEBACK does not replace a police complaint</li>
+        </ul>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="#report">Start on WhatsApp</a>
+          <a class="btn btn-quiet" href="#report">Download case form</a>
+        </div>
+        <p class="fineprint">Concept build — no live service is connected to this page.</p>
+      </article>
+
+      <article class="cta cta-garage reveal" data-delay="1">
+        <span class="cta-tag">For garages &amp; body shops</span>
+        <h3>Join the observation network</h3>
+        <p>You get a free repair-documentation tool for your shop — before and after
+        photos, digital job cards, customer history. In exchange, damaged vehicles that
+        arrive at your shop become searchable by a victim who is already looking.</p>
+        <ul>
+          <li>Free during the pilot, no per-visit fee</li>
+          <li>Android app or PWA — works on the phone you already own</li>
+          <li>~45 seconds per vehicle, offline-tolerant</li>
+          <li>Your customer data stays yours</li>
+        </ul>
+        <div class="cta-actions">
+          <a class="btn btn-accent" href="#report">Request onboarding</a>
+          <a class="btn btn-quiet" href="#garage">See what garages get</a>
+        </div>
+        <p class="fineprint">Concept build — no live service is connected to this page.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 20. SUMMARY ============ -->
+<section class="sec sec-end" id="concept">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">19 — The concept, in full</span>
+      <h2>One page, no slides.</h2>
+    </div>
+
+    <div class="summary reveal">
+      <div class="sum-row"><span>Problem</span><p>A rural hit-and-run victim may know very little about the offending vehicle, while that vehicle can disappear through local roads and be repaired without leaving any searchable digital trail.</p></div>
+      <div class="sum-row"><span>Customer</span><p>The hit-and-run victim, or their family, in a rural / semi-rural pocket of Pune, Maharashtra.</p></div>
+      <div class="sum-row"><span>Solution</span><p>A low-cost investigation service that maps the likely escape area and searches a participating local garage network for vehicles matching the accident's characteristics.</p></div>
+      <div class="sum-row"><span>Technology</span><p>WhatsApp and a PWA, GPS, digital road mapping, vehicle photography, computer vision, probabilistic matching, and a human investigator. The GNN is a later-stage technology, not an MVP requirement.</p></div>
+      <div class="sum-row"><span>Revenue</span><p>&#8377;99–&#8377;499 victim-paid investigation packages as an initial hypothesis, with future revenue from insurance, fleet operators and institutional investigation services.</p></div>
+      <div class="sum-row is-key"><span>Core advantage</span><p>Instead of trying to put surveillance cameras on every rural road, TRACEBACK creates observation points at local garages — the places damaged vehicles naturally appear.</p></div>
+      <div class="sum-row is-risk"><span>Biggest risk</span><p>The offending vehicle may never enter a participating garage — or may enter one without leaving enough distinctive evidence to establish anything useful. No amount of model sophistication fixes that.</p></div>
+      <div class="sum-row"><span>First MVP</span><p>One rural Pune corridor, 20–30 garages, WhatsApp victim intake, a simple garage inspection tool, and human-assisted investigation for 30 days.</p></div>
+      <div class="sum-row is-key"><span>Success condition</span><p>Not <em>"does our AI work?"</em> — but <em>"can we generate useful investigative leads cheaply enough that a victim is willing to pay for them?"</em></p></div>
+    </div>
+
+    <div class="closing reveal">
+      <h3>If the answer is yes, build the AI.</h3>
+      <p>
+        If the answer is no, then spending &#8377;10–20 lakh on a sophisticated graph
+        network and computer-vision platform would be solving the wrong problem beautifully.
+      </p>
+      <p class="closing-line">Build the network first. Prove the investigation economics second. Automate with AI third.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-wrap">
+    <div class="foot-brand">
+      <span class="brand-text">TRACE<em>BACK</em></span>
+      <p>A rural hit-and-run investigation network.<br />Concept and pilot design — Pune, Maharashtra.</p>
+    </div>
+    <div class="foot-cols">
+      <div>
+        <h4>Explore</h4>
+        <a href="#problem">The problem</a>
+        <a href="#garage">Garage network</a>
+        <a href="#matching">Match engine</a>
+        <a href="#numbers">The four numbers</a>
+      </div>
+      <div>
+        <h4>Plan</h4>
+        <a href="#technology">AI roadmap</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#mvp">30-day MVP</a>
+        <a href="#risks">Risk register</a>
+      </div>
+      <div>
+        <h4>Act</h4>
+        <a href="#report">File a case</a>
+        <a href="#report">Join as a garage</a>
+        <a href="https://morth.nic.in/sites/default/files/Disaster-Management-Plan.pdf" target="_blank" rel="noopener noreferrer">MoRTH scheme</a>
+      </div>
+    </div>
+  </div>
+  <div class="wrap foot-legal">
+    <p><strong>Disclaimer.</strong> TRACEBACK is a concept and pilot plan presented for discussion. Nothing on this page is a live service, an offer of legal services, or a claim that any match identifies an offending vehicle. All match outputs are unverified investigative leads requiring human confirmation. Prices, target metrics and network projections are hypotheses to be tested, not results. Government compensation figures are subject to the relevant scheme's conditions — verify current terms with the Ministry of Road Transport &amp; Highways.</p>
+    <p>Vehicle registration plates, photographs and location data are sensitive personal data. Any deployment requires prior legal review, explicit consent, role-based access, and defined retention limits.</p>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
